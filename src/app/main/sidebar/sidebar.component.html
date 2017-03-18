@@ -1,0 +1,28 @@
+<ul class="menu">
+  <li class="menu-header">
+            <span class="menu-header-text">
+              LINKS
+            </span>
+  </li>
+  <li class="menu-item">
+    <div class="tile tile-centered">
+      <div class="tile-icon">
+        <img src="assets/s.png" class="avatar">
+      </div>
+      <div class="tile-content">
+        FAST
+      </div>
+    </div>
+  </li>
+  <li class="divider"></li>
+  <li class="menu-item" *ngFor="let link of links">
+    <div class="menu-badge" *ngIf="link.badge">
+      <label class="label label-primary">{{link.badge}}</label>
+    </div>
+    <a [routerLink]="link.link" routerLinkActive="active">
+      <i class="icon icon-link"></i>
+      {{link.title}}
+    </a>
+    <div class="divider"></div>
+  </li>
+</ul>

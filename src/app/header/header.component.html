@@ -1,0 +1,22 @@
+<section>
+  <img src="assets/sheridan.png" alt="Sheridan Logo" class="centered" width="300px">
+</section>
+<div class="divider"></div>
+<header class="navbar">
+  <section class="navbar-primary">
+    <a routerLink="/" class="navbar-brand mr-10">
+      <span class="label label-primary">Faculty of Applied Science & Technology</span></a>
+  </section>
+  <section class="navbar-section centered">
+    <a href="https://www.sheridancollege.ca" class="btn btn-block btn-lg" routerLinkActive="active" target="_blank">Sheridan</a>
+    <a href="https://www.sheridancollege.ca/admissions.aspx" class="btn btn-block btn-lg" routerLinkActive="active"
+       target="_blank">Admission</a>
+
+  </section>
+  <section class="navbar-section centered">
+    <a href="http://www.ontariocolleges.ca" class="btn btn-block btn-lg" routerLinkActive="active"
+       target="_blank">OCAS</a>
+    <a (click)="activateModal()" class="btn btn-block btn-lg">Admin</a>
+  </section>
+</header>
+<app-login [active]="displayModal"></app-login>

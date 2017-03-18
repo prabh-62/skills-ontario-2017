@@ -1,0 +1,17 @@
+.navbar-section {
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    font-size: 3rem;
+  }
+}
+
+.navbar {
+  .label {
+    padding: 2.5rem;
+  }
+  .btn {
+    margin: 2rem;
+  }
+}
