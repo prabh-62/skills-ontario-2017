@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Registration} from "../../models/registration";
 
 @Component({
   selector: 'app-register',
@@ -33,6 +34,8 @@ export class RegisterComponent implements OnInit {
 
   public registrationForm: FormGroup;
 
+  public register = new Registration();
+
   constructor(private fb: FormBuilder) {
   }
 
@@ -43,12 +46,12 @@ export class RegisterComponent implements OnInit {
 
   public createForm() {
     this.registrationForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      program: ['', Validators.required],
-      request: ['', Validators.required],
-      requestDate: ['', Validators.required]
+      firstName: [this.register.firstName, [Validators.required, Validators.minLength(5)]],
+      lastName: [this.register.lastName, [Validators.required, Validators.minLength(5)]],
+      email: [this.register.contactEmail, [Validators.required, Validators.minLength(5)]],
+      program: [this.register.programOfInterest, [Validators.required, Validators.minLength(5)]],
+      request: [this.register.request, [Validators.required, Validators.minLength(5)]],
+      requestDate: [this.register.requestDate, [Validators.required, Validators.minLength(5)]],
     });
   }
 

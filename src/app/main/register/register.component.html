@@ -2,22 +2,22 @@
   <form class="form-horizontal" [formGroup]="registrationForm" (submit)="onSubmit()">
     <!-- form input control -->
     <div class="form-group">
-      <label class="form-label col-3" for="firstName">First Name</label>
+      <label class="form-label col-3" for="firstName">First Name: </label>
       <input class="form-input col-9" type="text" id="firstName" formControlName="firstName" placeholder="First Name"/>
     </div>
     <!-- form input control -->
     <div class="form-group">
-      <label class="form-label col-3" for="lastName">Last Name</label>
+      <label class="form-label col-3" for="lastName">Last Name: </label>
       <input class="form-input col-9" type="text" id="lastName" formControlName="lastName" placeholder="Last Name"/>
     </div>
     <!-- form input control -->
     <div class="form-group">
-      <label class="form-label col-3" for="email">Email</label>
+      <label class="form-label col-3" for="email">Email: </label>
       <input class="form-input col-9" type="email" id="email" formControlName="email" placeholder="Email"/>
     </div>
     <!-- form select control -->
     <div class="form-group">
-      <label class="form-label col-3" for="program">Program of Interest</label>
+      <label class="form-label col-3" for="program">Program of Interest: </label>
       <select class="form-select col-9" id="program" formControlName="program">
         <option disabled>Choose an option</option>
         <option *ngFor="let program of programs" [value]="program.code">{{program.title}}</option>
@@ -26,13 +26,13 @@
 
     <!-- form textarea control -->
     <div class="form-group">
-      <label class="form-label col-3" for="request">Request</label>
+      <label class="form-label col-3" for="request">Request: </label>
       <textarea class="form-input col-9" id="request" formControlName="request" placeholder="Describe your request"
                 rows="3"></textarea>
     </div>
     <!-- form date-->
     <div class="form-group">
-      <label class="form-label col-3" for="requestDate"></label>
+      <label class="form-label col-3" for="requestDate">Request Date: </label>
       <input type="date" formControlName="requestDate" id="requestDate"/>
     </div>
     <!-- form checkbox control -->
