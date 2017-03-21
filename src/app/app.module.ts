@@ -9,6 +9,7 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {MainModule} from './main/main.module';
 import {LoginComponent} from './main/login/login.component';
+import {requestOptionsProvider} from "./auth/DefaultRequestOptions";
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import {LoginComponent} from './main/login/login.component';
     AppRoutingModule,
     MainModule
   ],
-  providers: [],
+  providers: [requestOptionsProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule {

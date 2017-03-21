@@ -15,11 +15,11 @@ export class Registration {
               request?: string,
               requestDate?: Date) {
     this._id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.contactEmail = contactEmail;
-    this.programOfInterest = programOfInterest;
-    this.request = request;
+    this.firstName = firstName || '';
+    this.lastName = lastName || '';
+    this.contactEmail = contactEmail || '';
+    this.programOfInterest = programOfInterest || '';
+    this.request = request || '';
     this.requestDate = requestDate;
   }
 }

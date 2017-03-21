@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Registration} from "../../models/registration";
+import 'rxjs/add/operator/map';
+import {Registration} from '../../models/registration';
+import {Http, URLSearchParams, Response} from '@angular/http';
 
 @Component({
   selector: 'app-register',
@@ -36,12 +35,13 @@ export class RegisterComponent implements OnInit {
 
   public register = new Registration();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: Http) {
   }
 
   ngOnInit() {
     this.submitted = false;
     this.createForm();
+    this.fetchUserDetails();
   }
 
   public createForm() {
@@ -53,6 +53,29 @@ export class RegisterComponent implements OnInit {
       request: [this.register.request, [Validators.required, Validators.minLength(5)]],
       requestDate: [this.register.requestDate, [Validators.required, Validators.minLength(5)]],
     });
+  }
+
+  private fetchUserDetails() {
+    const UserDetailsAPI: URL = new URL('https://my.mlh.io/api/v2/user.json');
+
+    const params: URLSearchParams = new URLSearchParams();
+    params.set('access_token', localStorage.getItem('access_token') || '');
+
+    this.http.get(`${UserDetailsAPI.href}?${params}`)
+      .map((response: Response) => response.json())
+      .subscribe(
+        result => {
+          localStorage.setItem('user', JSON.stringify(result.data));
+          this.registrationForm.setValue({
+            firstName: result.data.first_name,
+            lastName: result.data.last_name,
+            email: result.data.email,
+            program: '',
+            request: '',
+            requestDate: '2017-09-17'
+          });
+        },
+        error => console.error(error));
   }
 
   public onSubmit() {

@@ -5,11 +5,16 @@ import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from '../auth/auth.guard';
+import {CallbackComponent} from './callback/callback.component';
 
 const routes: Routes = [
   {
     path: 'main',
     component: MainComponent
+  },
+  {
+    path: 'oauth/callback',
+    component: CallbackComponent
   },
   {
     path: 'login',

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, OnInit} from '@angular/core';
+import {Http, URLSearchParams} from '@angular/http';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -16,15 +16,22 @@ export class SidebarComponent implements OnInit {
       title: 'Upcoming Events',
       link: 'https://www.sheridancollege.ca/news-and-events/events.aspx',
       badge: 5
-    },
-    {
-      title: 'Register for Follow Up',
-      link: '/register'
     }
   ];
-  constructor() { }
+
+  constructor(private http: Http) {
+  }
 
   ngOnInit() {
   }
 
+  register() {
+    const MLHapi = new URL('https://my.mlh.io/oauth/authorize');
+    const redirect_uri = new URL('http://localhost:4200/oauth/callback');
+    const params = new URLSearchParams();
+    params.append('client_id', '98c90e6fe51d6aa3465723c8f719a78499316c339e135a6a8b39a210b8bf8dc1');
+    params.append('redirect_uri', redirect_uri.href);
+    params.append('response_type', 'token');
+    window.location.href = `${MLHapi.href}?${params}`;
+  }
 }
