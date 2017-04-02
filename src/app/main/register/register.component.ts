@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import 'rxjs/add/operator/map';
 import {Registration} from '../../models/registration';
 import {Http, URLSearchParams, Response} from '@angular/http';
+import gql from 'graphql-tag';
+import {Apollo} from 'apollo-angular';
 
 @Component({
   selector: 'app-register',
@@ -35,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
   public register = new Registration();
 
-  constructor(private fb: FormBuilder, private http: Http) {
+  constructor(private fb: FormBuilder, private http: Http, private apollo: Apollo) {
   }
 
   ngOnInit() {
@@ -80,6 +82,30 @@ export class RegisterComponent implements OnInit {
 
   public onSubmit() {
     this.submitted = true;
+    this.saveData(this.registrationForm.value);
     console.log(this.registrationForm.value);
+  }
+
+  public saveData({firstName, lastName, email, program, request, requestDate}) {
+    console.log(firstName, lastName, email, program, request, requestDate);
+    const submitInquiry = gql`
+      mutation {
+        createInquiry(inquiry: {
+        firstName: ${firstName},
+        lastName: ${lastName},
+        email: ${email},
+        program: ${program},
+        request: ${request},
+        requestDate: ${requestDate}
+        }){
+          firstName,
+          program,
+          request
+        }
+      }`;
+
+    this.apollo.mutate({
+      mutation: submitInquiry
+    }).subscribe(({data}) => console.log(data));
   }
 }

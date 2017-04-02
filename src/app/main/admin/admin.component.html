@@ -1,23 +1,28 @@
 <a class="btn btn-primary" routerLink="/"><-Back</a>
-<ng-template *ngIf="followUps === 1; else none">
-  <table class="table table-striped table-hover">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Program of Interest</th>
-      <th>Request</th>
-      <th>Request Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="active">
-      <td>Prabhdeep Singh</td>
-      <td>Software Dev</td>
-      <td>Empty</td>
-      <td>Sept 20, 2017</td>
-    </tr>
-    </tbody>
-  </table>
+
+<ng-template ngIf="followUps >=1; else none">
+  <div class="container col-8">
+    <div class="tile" *ngFor="let i of inquiries">
+      <div class="tile-icon">
+        <figure class="avatar avatar-lg">
+          <img src="assets/person.png">
+        </figure>
+      </div>
+      <div class="tile-content">
+        <p class="tile-title">
+          {{i.firstName}} {{i.lastName}}
+          <span class="tile-subtitle">({{i.program}} - {{i.requestDate}})</span>
+        </p>
+        <p class="tile-subtitle">
+          {{i.request}}
+        </p>
+      </div>
+      <div class="tile-action">
+        <button class="btn btn-primary">Follow-up</button>
+        <button class="btn">Discard</button>
+      </div>
+    </div>
+  </div>
 </ng-template>
 
 <ng-template #none>
