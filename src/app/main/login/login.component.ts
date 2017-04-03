@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -29,9 +30,22 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log(this.loginForm.value);
-    this.closeModal();
-    this.router.navigateByUrl('/admin');
+    if (this.verifyCredentials(this.loginForm.value)) {
+      localStorage.setItem('authenticated', 'admin');
+      this.closeModal();
+      this.router.navigateByUrl('/admin');
+    }
+  }
+
+  private verifyCredentials({loginName, loginPassword}) {
+    const username = environment.admin_username;
+    const password = environment.admin_password;
+    if ((loginName.toLowerCase() === username)
+      &&
+      (loginPassword.toLowerCase() === password)) {
+      return true;
+    }
+    return false;
   }
 
   public closeModal() {

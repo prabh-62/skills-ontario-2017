@@ -9,7 +9,9 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {MainModule} from './main/main.module';
 import {LoginComponent} from './main/login/login.component';
-import {requestOptionsProvider} from "./auth/DefaultRequestOptions";
+import {requestOptionsProvider} from './auth/DefaultRequestOptions';
+import {ApolloModule} from 'apollo-angular';
+import {provideClient} from './services/apollo-init';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import {requestOptionsProvider} from "./auth/DefaultRequestOptions";
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    ApolloModule.forRoot(provideClient),
     AppRoutingModule,
     MainModule
   ],
