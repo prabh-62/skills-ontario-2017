@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit {
 
   register() {
     const MLHapi = new URL('https://my.mlh.io/oauth/authorize');
-    const redirect_uri = new URL('http://localhost:4200/oauth/callback');
+    const redirect_uri = new URL(`${location.hostname}oauth/callback`);
     const params = new URLSearchParams();
     params.append('client_id', '98c90e6fe51d6aa3465723c8f719a78499316c339e135a6a8b39a210b8bf8dc1');
     params.append('redirect_uri', redirect_uri.href);
