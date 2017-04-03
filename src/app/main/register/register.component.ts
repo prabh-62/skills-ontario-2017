@@ -83,7 +83,6 @@ export class RegisterComponent implements OnInit {
   public onSubmit() {
     this.submitted = true;
     this.saveData(this.registrationForm.value);
-    console.log(this.registrationForm.value);
   }
 
   public saveData({firstName, lastName, email, program, request, requestDate}) {

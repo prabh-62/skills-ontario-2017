@@ -1,8 +1,10 @@
 import {createNetworkInterface} from 'apollo-client';
 import ApolloClient from 'apollo-client/ApolloClient';
+import {environment} from '../../environments/environment';
+
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: 'http://localhost:3000/graphql'
+    uri: environment.graphql_endpoint
   })
 });
 

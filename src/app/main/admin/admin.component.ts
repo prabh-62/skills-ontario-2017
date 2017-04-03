@@ -39,7 +39,6 @@ export class AdminComponent implements OnInit {
     this.apollo.watchQuery({
       query: followups
     }).subscribe((res: ApolloQueryResult<any>) => {
-      console.log(res);
       this.inquiries = res.data.inquiries;
       this.followUps = this.inquiries.length;
     });

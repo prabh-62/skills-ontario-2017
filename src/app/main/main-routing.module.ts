@@ -4,8 +4,9 @@ import {MainComponent} from './main.component';
 import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import {RegisterComponent} from './register/register.component';
-import {AuthGuard} from '../auth/auth.guard';
 import {CallbackComponent} from './callback/callback.component';
+import {RegisterGuard} from '../services/register.guard';
+import {AdminGuard} from '../services/admin.guard';
 
 const routes: Routes = [
   {
@@ -23,11 +24,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AdminGuard]
   },
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [RegisterGuard]
   }
 ];
 
